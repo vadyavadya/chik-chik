@@ -1,0 +1,15 @@
+.navigation__list {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 33px;
+}
+.navigation__link {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+}

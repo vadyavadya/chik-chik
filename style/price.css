@@ -1,0 +1,38 @@
+.price {
+    padding: 63px 0 124px;
+}
+
+.price__title {
+    font-weight: 400;
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 0 0 16px;
+}
+.price__tag-line {
+    margin-bottom: 0 0 40px;
+}
+.price__wrapper-content {
+}
+.price__content {
+}
+.price__list {
+}
+.price__item {
+}
+.price__item-title {
+}
+.price__item-count {
+}
+.price__link {
+}
+
+@media (max-width: 768px) {
+    .price {
+        padding: 40px 0;
+    }
+}
+@media (max-width: 560px) {
+    .price {
+        padding: 32px 0;
+    }
+}

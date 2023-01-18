@@ -1,0 +1,29 @@
+.main-link {
+    display: inline-block;
+    border-radius: 4px;
+    background: #f6f3e3;
+    padding: 13px 46px;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #241d1c;
+    cursor: pointer;
+}
+
+.main-link:hover:not(:disabled) {
+    background: #efe7be;
+}
+.main-link:focus-visible {
+    outline: 1px solid #ffffff;
+}
+.main-link:disabled {
+    opacity: 0.4;
+}
+
+@media (max-width: 560px) {
+    .main-link {
+        padding: 10px 24px;
+        font-size: 12px;
+    }
+}
