@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="style/hero.css">
   <link rel="stylesheet" href="style/slider.css">
   <link rel="stylesheet" href="style/price.css">
+  <link rel="stylesheet" href="style/about.css">
+  <link rel="stylesheet" href="style/footer.css">
+  <link rel="stylesheet" href="style/reserve.css">
+  <link rel="stylesheet" href="style/radio.css">
 </head>
 
 <body>
@@ -30,7 +34,7 @@
             </li>
 
             <li class="navigation__item">
-              <a href="#about" class="navigation__link">нас</a>
+              <a href="#about" class="navigation__link">о нас</a>
             </li>
           </ul>
         </nav>
@@ -135,17 +139,17 @@
         <p class="about__description">Сhik chik — это намного больше, чем просто барберная. Это место, где вам помогут найти свой собственный, неповторимый стиль. Стоит довериться нашим мастерам один раз, и, поверьте, новый образ не оставит Вас равнодушным. Мужские стрижки и опасное бритье — это наш профиль, и мы уверены, что наши барберы делают это лучше всех.</p>
 
         <ul class="about__list">
-          <li class="about__item">
+          <li class="about__item about__item_top">
             <h3 class="about__item-title">Топ специалисты</h3>
 
             <p class="about__item-description">Мы подстрижем вас на высшем уровне</p>
           </li>
-          <li class="about__item">
+          <li class="about__item about__item_master">
             <h3 class="about__item-title">Мастера бород и усов</h3>
 
             <p class="about__item-description">Мы заботливо уложим вашу бороду и усы</p>
           </li>
-          <li class="about__item">
+          <li class="about__item about__item_garant">
             <h3 class="about__item-title">Гарантия качества</h3>
 
             <p class="about__item-description">Мы используем только профессиональные средства</p>
@@ -181,7 +185,7 @@
 
               <label class="radio">
                 <input class="radio__input" type="radio" name="service">
-                <span>Стрижка + Стрижка бороды</span>
+                <span class="radio__label">Стрижка + Стрижка бороды</span>
               </label>
 
               <label class="radio">
@@ -201,7 +205,7 @@
 
               <label class="radio">
                 <input class="radio__input" type="radio" name="service">
-                <span>Оформление бровей</span>
+                <span class="radio__label">Оформление бровей</span>
               </label>
             </fieldset>
 
@@ -210,27 +214,27 @@
 
               <label class="radio">
                 <input class="radio__input" type="radio" name="spec">
-                <span class="radio__label radio__label_spec">Игорь</span>
+                <span class="radio__label radio__label_spec" style="--bg-image: url('../img/spec1.png')">Игорь</span>
               </label>
 
               <label class="radio">
                 <input class="radio__input" type="radio" name="spec">
-                <span class="radio__label radio__label_spec">Анатолий</span>
+                <span class="radio__label radio__label_spec" style="--bg-image: url('../img/spec2.png')">Анатолий</span>
               </label>
 
               <label class="radio">
                 <input class="radio__input" type="radio" name="spec">
-                <span class="radio__label radio__label_spec">Руслан</span>
+                <span class="radio__label radio__label_spec" style="--bg-image: url('../img/spec3.png')">Руслан</span>
               </label>
 
               <label class="radio">
                 <input class="radio__input" type="radio" name="spec">
-                <span class="radio__label radio__label_spec">Михаил</span>
+                <span class="radio__label radio__label_spec" style="--bg-image: url('../img/spec4.png')">Михаил</span>
               </label>
 
               <label class="radio">
                 <input class="radio__input" type="radio" name="spec">
-                <span class="radio__label radio__label_spec">Евгений</span>
+                <span class="radio__label radio__label_spec" style="--bg-image: url('../img/spec5.png')">Евгений</span>
               </label>
             </fieldset>
 
@@ -323,30 +327,30 @@
   </main>
 
   <footer class="footer">
-    <img class="footer__logo" src="img/logo.svg" alt="">
-
-    <div class="footer__novigation navigation">
-      <ul class="navigation__list">
-        <li class="navigation__item">
-          <a href="#price" class="navigation__link">стоимость услуг</a>
-        </li>
-
-        <li class="navigation__item">
-          <a href="#about" class="navigation__link">нас</a>
-        </li>
-      </ul>
+    <div class="container">
+      <div class="footer__container">
+        <img class="footer__logo" src="img/logo.svg" alt="">
+        <div class="footer__novigation navigation">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a href="#price" class="navigation__link">стоимость услуг</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#about" class="navigation__link">О нас</a>
+            </li>
+          </ul>
+        </div>
+        <ul class="footer__list">
+          <li class="footer__item">
+            Designer: <a href="#" class="footer__link">Anastasia Ilina</a>
+          </li>
+          <li class="footer__item">
+            Developer: <a href="#" class="footer__link">Vadim Sergeev</a>
+          </li>
+        </ul>
+      </div>
+      <p class="footer__copiryght">© chik chik, 2023</p>
     </div>
-
-    <ul class="footer__list">
-      <li class="footer__item">
-        Designer: <a href="#" class="footer__link">Anastasia Ilina</a>
-      </li>
-      <li class="footer__item">
-        Developer: <a href="#" class="footer__link">Vadim Sergeev</a>
-      </li>
-    </ul>
-
-    <p class="footer__copiryght">© chik chik, 2023</p>
   </footer>
 </body>
 

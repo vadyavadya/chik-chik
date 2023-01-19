@@ -13,3 +13,10 @@
     line-height: 1;
     text-transform: uppercase;
 }
+@media (max-width: 560px) {
+    .navigation__list {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+}
