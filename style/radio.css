@@ -1,4 +1,5 @@
 .radio {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .radio__input {
     /** скрыть точки */
