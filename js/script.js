@@ -115,6 +115,26 @@ const initSlider = () => {
     });
 }
 
+const renderPrice = (priceList, data) => {
+    /* 
+    <li class="price__item">
+        <span class="price__item-title">Стрижка ножницами</span>
+        <span class="price__item-count">2500 руб</span>
+    </li>
+    */
+
+    data.forEach(element => {
+        const priceItem = document.createElement('li');
+        priceItem.classList.add('price__item');
+        priceItem.innerHTML = `
+        <span class="price__item-title">${element.name}</span>
+        <span class="price__item-count">${element.price} руб</span>
+        `;
+        priceList.append(priceItem);
+    });
+
+}
+
 const initService = () => {
     const priceList = document.querySelector('.price__content');
     priceList.textContent = '';
@@ -126,8 +146,11 @@ const initService = () => {
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            renderPrice(priceList, data);
+            removePreload(priceList);
         })
+
+
 }
 
 const init = () => {
