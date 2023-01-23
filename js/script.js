@@ -1,4 +1,5 @@
-const API_URL = 'https://glowing-glen-epoch.glitch.me/api';
+const API_URL = 'https://glowing-glen-epoch.glitch.me/';
+
 
 /* 
 GET /api - получить список услуг
@@ -116,13 +117,6 @@ const initSlider = () => {
 }
 
 const renderPrice = (priceList, data) => {
-    /* 
-    <li class="price__item">
-        <span class="price__item-title">Стрижка ножницами</span>
-        <span class="price__item-count">2500 руб</span>
-    </li>
-    */
-
     data.forEach(element => {
         const priceItem = document.createElement('li');
         priceItem.classList.add('price__item');
@@ -135,27 +129,134 @@ const renderPrice = (priceList, data) => {
 
 }
 
+const renderService = (wrapper, data) => {
+    const labels = data.map(elem => {
+        const label = document.createElement('label');
+        label.classList.add('radio');
+        label.innerHTML = `
+            <input class="radio__input" type="radio" name="service" value="${elem.id}">
+            <span class="radio__label">${elem.name}</span>
+            `;
+        return label;
+    });
+
+    wrapper.append(...labels);
+}
+
 const initService = () => {
     const priceList = document.querySelector('.price__content');
     priceList.textContent = '';
-
     addPreload(priceList);
 
-    fetch(API_URL)
+    const reserveFieldsetService = document.querySelector('[name=filedset-service]')
+    reserveFieldsetService.innerHTML = `<legend class="reserve__legend">Услуга</legend>`;
+    addPreload(reserveFieldsetService);
+
+
+    fetch(`${API_URL}/api`)
         .then((response) => {
             return response.json();
         })
         .then(data => {
             renderPrice(priceList, data);
             removePreload(priceList);
+            return data;
+        })
+        .then(data => {
+            renderService(reserveFieldsetService, data);
+            removePreload(reserveFieldsetService);
         })
 
+}
 
+const addDisabled = (arr) => {
+    arr.forEach(elem => {
+        elem.disabled = true;
+    })
+}
+
+const removeDisabled = (arr) => {
+    arr.forEach(elem => {
+        elem.disabled = false;
+    })
+}
+
+const renderSpec = (wrapper, data) => {
+    const labels = data.map(item => {
+        const label = document.createElement('label');
+        label.classList.add('radio');
+        label.innerHTML = `
+        <input class="radio__input" type="radio" name="spec" value="${item.id}">
+        <span class="radio__label radio__label_spec" style="--bg-image: url('${API_URL}${item.img}')">${item.name}</span>            
+        `;
+        return label;
+    });
+
+    wrapper.append(...labels);
+}
+
+const renderMonth = (wrapper, data) => {
+    const labels = data.map(item => {
+        const label = document.createElement('label');
+        label.classList.add('radio');
+        label.innerHTML = `
+        <input class="radio__input" type="radio" name="mounth" value="${item}">
+        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long' }).format(new Date(item))}</span>            
+        `;
+        return label;
+    });
+
+    wrapper.append(...labels);
+}
+
+const initReserve = () => {
+    const reserveForm = document.querySelector('.reserve__form');
+
+    // Стандартно
+    /* addDisabled([
+        reserveForm.filedsetspec,
+        reserveForm.filedsetmonth,
+        reserveForm.filedsetday,
+        reserveForm.filedsettime,
+        reserveForm.btn,
+    ]); */
+
+    //* Деструктивное представление
+    const { filedsetspec, filedsetmonth, filedsetday, filedsettime, btn, } = reserveForm;
+    addDisabled([filedsetspec, filedsetmonth, filedsetday, filedsettime, btn,]);
+
+    reserveForm.addEventListener('change', async event => {
+        const target = event.target;
+        console.log('target: ', target);
+
+        if (target.name === 'service') {
+            addDisabled([filedsetspec, filedsetmonth, filedsetday, filedsettime, btn,]);
+            filedsetspec.innerHTML = `<legend class="reserve__legend">Специалист</legend>`;
+            addPreload(filedsetspec);
+            const response = await fetch(`${API_URL}/api?service=${target.value}`);
+            const data = await response.json();
+            renderSpec(filedsetspec, data);
+            removePreload(filedsetspec);
+            removeDisabled([filedsetspec]);
+        }
+
+        if (target.name === 'spec') {
+            addDisabled([filedsetmonth, filedsetday, filedsettime, btn,]);
+            filedsetmonth.innerHTML = '';
+            addPreload(filedsetmonth);
+            const response = await fetch(`${API_URL}/api?spec=${target.value}`);
+            const data = await response.json();
+            renderMonth(filedsetmonth, data);
+            removePreload(filedsetmonth);
+            removeDisabled([filedsetmonth]);
+        }
+    })
 }
 
 const init = () => {
     initSlider();
     initService();
+    initReserve();
 }
 
 window.addEventListener('DOMContentLoaded', init);
