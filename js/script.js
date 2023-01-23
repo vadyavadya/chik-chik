@@ -1,3 +1,14 @@
+const API_URL = 'https://glowing-glen-epoch.glitch.me/api';
+
+/* 
+GET /api - получить список услуг
+GET /api?service={n} - получить список барберов
+GET /api?spec={n} - получить список месяца работы барбера
+GET /api?spec={n}&month={n} - получить список дней работы барбера
+GET /api?spec={n}&month={n}&day={n} - получить список свободных часов барбера
+POST /api/order - оформить заказ 
+*/
+
 const addPreload = (elem) => {
     elem.classList.add('preload');
 }
@@ -102,9 +113,26 @@ const initSlider = () => {
 
         startSlider(slider);
     });
-
-
-
 }
 
-window.addEventListener('DOMContentLoaded', initSlider);
+const initService = () => {
+    const priceList = document.querySelector('.price__content');
+    priceList.textContent = '';
+
+    addPreload(priceList);
+
+    fetch(API_URL)
+        .then((response) => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+}
+
+const init = () => {
+    initSlider();
+    initService();
+}
+
+window.addEventListener('DOMContentLoaded', init);

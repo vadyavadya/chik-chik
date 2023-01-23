@@ -23,6 +23,9 @@
 .footer__copiryght {
     font-size: 12px;
 }
+.footer__link:hover {
+    text-decoration: underline;
+}
 
 @media (max-width: 1024px) {
 }
