@@ -199,8 +199,8 @@ const renderMonth = (wrapper, data) => {
         const label = document.createElement('label');
         label.classList.add('radio');
         label.innerHTML = `
-        <input class="radio__input" type="radio" name="month" value=0"${item}">
-        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long' }).format(new Date('0' + item))} ${item}</span>            
+        <input class="radio__input" type="radio" name="month" value="0${item}">
+        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long' }).format(new Date('0' + item))} 0${item}</span>            
         `;
         return label;
     });
