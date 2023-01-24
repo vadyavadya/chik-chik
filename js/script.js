@@ -147,7 +147,7 @@ const initService = () => {
     priceList.textContent = '';
     addPreload(priceList);
 
-    const reserveFieldsetService = document.querySelector('[name=filedsetservice]')
+    const reserveFieldsetService = document.querySelector('[name=filedsetservice]');
     reserveFieldsetService.innerHTML = `<legend class="reserve__legend">Услуга</legend>`;
     addPreload(reserveFieldsetService);
 
