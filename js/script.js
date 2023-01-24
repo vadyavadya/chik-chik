@@ -200,7 +200,7 @@ const renderMonth = (wrapper, data) => {
         label.classList.add('radio');
         label.innerHTML = `
         <input class="radio__input" type="radio" name="month" value="${item}">
-        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long' }).format(new Date(item))}</span>            
+        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long' }).format(new Date(item))} ${item}</span>            
         `;
         return label;
     });
@@ -249,6 +249,10 @@ const initReserve = () => {
 
     //* Деструктивное представление
     const { filedsetservice, filedsetspec, filedsetmonth, filedsetday, filedsettime, btn, } = reserveForm;
+    console.log('filedsetmonth: ', filedsetmonth);
+    console.log('filedsetspec: ', filedsetspec);
+    console.log('filedsetservice: ', filedsetservice);
+
     addDisabled([filedsetspec, filedsetmonth, filedsetday, filedsettime, btn,]);
 
     reserveForm.addEventListener('change', async event => {
