@@ -1,4 +1,4 @@
-const API_URL = 'https://glowing-glen-epoch.glitch.me/';
+const API_URL = 'https://chrome-admitted-wavelength.glitch.me/';
 
 
 /* 
