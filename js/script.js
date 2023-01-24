@@ -75,7 +75,6 @@ const startSlider = (slider) => {
 
     // Добавление плавности
     sliderList.style.transition = `transform 0.3s ease 0s`;
-    sliderList.style.transition = `transform 0.3s ease 0s`;
 
     btnPrevSlide.addEventListener('click', prevSlide);
     btnNextSlide.addEventListener('click', nextSlide);
@@ -148,7 +147,7 @@ const initService = () => {
     priceList.textContent = '';
     addPreload(priceList);
 
-    const reserveFieldsetService = document.querySelector('[name=filedset-service]')
+    const reserveFieldsetService = document.querySelector('[name=filedsetservice]')
     reserveFieldsetService.innerHTML = `<legend class="reserve__legend">Услуга</legend>`;
     addPreload(reserveFieldsetService);
 
@@ -249,7 +248,7 @@ const initReserve = () => {
     ]); */
 
     //* Деструктивное представление
-    const { filedsetspec, filedsetmonth, filedsetday, filedsettime, btn, } = reserveForm;
+    const { filedsetservice, filedsetspec, filedsetmonth, filedsetday, filedsettime, btn, } = reserveForm;
     addDisabled([filedsetspec, filedsetmonth, filedsetday, filedsettime, btn,]);
 
     reserveForm.addEventListener('change', async event => {
@@ -303,6 +302,32 @@ const initReserve = () => {
         if (target.name === 'time') {
             removeDisabled([btn]);
         }
+    })
+
+    reserveForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(reserveForm);
+
+        const json = JSON.stringify(Object.fromEntries(formData));
+
+        const response = await fetch(`${API_URL}api/order`, {
+            method: 'post',
+            body: json,
+        });
+
+        const data = await response.json();
+        addDisabled([filedsetservice, filedsetspec, filedsetmonth, filedsetday, filedsettime, btn,])
+
+        const p = document.createElement('p');
+        p.textContent = `
+        Спасибо за бронь #${data.id}!
+        Ждем вас ${Intl.DateTimeFormat('RU-ru', {
+            month: "long",
+            day: "numeric",
+        }).format(new Date(`${data.month}/${data.day}`))}, время ${data.time}
+        `;
+        reserveForm.append(p);
     })
 }
 
