@@ -200,7 +200,7 @@ const renderMonth = (wrapper, data) => {
         label.classList.add('radio');
         label.innerHTML = `
         <input class="radio__input" type="radio" name="month" value="${item}">
-        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long' }).format(new Date(item))}</span>            
+        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long' }).format(new Date().setMonth(item))}</span>            
         `;
         return label;
     });
@@ -214,7 +214,7 @@ const renderDay = (wrapper, data, month) => {
         label.classList.add('radio');
         label.innerHTML = `
         <input class="radio__input" type="radio" name="day" value="${item}">
-        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long', day: "numeric" }).format(new Date(`${month}/${item}`))}</span>            
+        <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', { month: 'long', day: "numeric" }).format(new Date().setMonth(month, item))}</span>            
         `;
         return label;
     });
@@ -326,7 +326,7 @@ const initReserve = () => {
         Ждем вас ${Intl.DateTimeFormat('RU-ru', {
             month: "long",
             day: "numeric",
-        }).format(new Date(`${data.month}/${data.day}`))}, время ${data.time}
+        }).format(new Date().setMonth(data.month, data.day))}, время ${data.time}
         `;
         reserveForm.append(p);
     })
