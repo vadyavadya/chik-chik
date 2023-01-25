@@ -218,7 +218,6 @@ const renderDay = (wrapper, data, month) => {
         `;
         return label;
     });
-
     wrapper.append(...labels);
 }
 
